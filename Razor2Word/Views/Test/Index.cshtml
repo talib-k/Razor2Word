@@ -1,0 +1,121 @@
+﻿@using System.Drawing
+@using Razor2Word.Utils
+@using FontFamily = Razor2Word.Utils.FontFamily
+@using FontStyle = Razor2Word.Utils.FontStyle
+@{
+    Layout = null;
+}
+<html>
+    <head>
+        @{
+            var mainLogoStyle = Word.Style("MainLogo", fontFamily: FontFamily.Arial, fontSize: 22, color: Color.White, fontStyle: FontStyle.Bold);
+            var customerDataStyle = Word.Style("CustomerDataStyle", fontFamily: FontFamily.Arial, fontSize: 11, color: Color.White);
+            var chapterHeaderStyle = Word.Style("ChapterHeaderStyle", fontFamily: FontFamily.Arial, fontSize: 11, fontStyle: FontStyle.Bold | FontStyle.Underline);
+            var dataDescriptionStyle = Word.Style("DataDescriptionStyle", fontFamily: FontFamily.Arial, fontSize: 9, color: Color.White, fontStyle: FontStyle.Bold);
+            var columnHeaderStyle = Word.Style("ColumnHeaderStyle", fontFamily: FontFamily.Arial, fontSize: 7, fontStyle: FontStyle.Bold);
+            var tableDataStyle = Word.Style("TableDataStyle", fontFamily: FontFamily.Arial, fontSize: 7);
+        }
+    </head>
+    <body>
+        <br/>
+        @using(Word.Paragraph(styleDescription: chapterHeaderStyle))
+        {
+            @:Test
+        }
+        <br/>
+        @using (Word.Table(width: new ValueWithUnit(80, DimensionUnit.Percent), backColor: Color.MediumSeaGreen, cellAligment: CellAligment.Center))
+        {
+            using (Word.TableRow())
+            {
+                using (Word.TableCell(tableStyleDescription: mainLogoStyle, rowSpan: 5))
+                {
+                    @:BNP Paribas Bank Polska SA
+                }
+                using (Word.TableCell(tableStyleDescription: customerDataStyle))
+                {
+                    @:Doradca Klienta
+                }
+                using (Word.TableCell(tableStyleDescription: customerDataStyle))
+                {
+                    @:Test
+                }
+            }
+            using (Word.TableRow())
+            {
+                using (Word.TableCell(tableStyleDescription: customerDataStyle))
+                {
+                    @:Analityk Biznesowy
+                }
+                using (Word.TableCell(tableStyleDescription: customerDataStyle))
+                {
+                    @:Test
+                }
+            }
+            using (Word.TableRow())
+            {
+                using (Word.TableCell(tableStyleDescription: customerDataStyle))
+                {
+                    @:Analityk Kredytowy
+                }
+                using (Word.TableCell(tableStyleDescription: customerDataStyle))
+                {
+                    @:Test
+                }
+            }
+            using (Word.TableRow())
+            {
+                using (Word.TableCell(tableStyleDescription: customerDataStyle))
+                {
+                    @:LOO (PLN):
+                }
+                using (Word.TableCell(tableStyleDescription: customerDataStyle))
+                {
+                    @:123 456
+                }
+            }
+            using (Word.TableRow())
+            {
+                using (Word.TableCell(tableStyleDescription: customerDataStyle))
+                {
+                    @:LOO wg kursu kwartalnego (PLN):
+                }
+                using (Word.TableCell(tableStyleDescription: customerDataStyle))
+                {
+                    @:123 456 789
+                }
+            }
+        }
+        <br/>
+        @using(Word.Paragraph(styleDescription: chapterHeaderStyle))
+        {
+            @:Test
+        }
+        <br/>
+        @using (Word.Table(useBorder: true, cellAligment: CellAligment.Center))
+        {
+            using (Word.TableRow(height: new ValueWithUnit(20, DimensionUnit.Point)))
+            {
+                using (Word.TableCell(tableStyleDescription: columnHeaderStyle, width: new ValueWithUnit(200, DimensionUnit.Point), backColor: Color.Beige))
+                {
+                    @:BNP Paribas Bank Polska SA
+                }
+                using (Word.TableCell(tableStyleDescription: columnHeaderStyle, backColor: Color.Beige))
+                {
+                    @:Doradca Klienta
+                }
+
+            }
+            using (Word.TableRow(height: new ValueWithUnit(14, DimensionUnit.Point)))
+            {
+                using (Word.TableCell(tableStyleDescription: tableDataStyle))
+                {
+                    @:Analityk Biznesowy
+                }
+                using (Word.TableCell(tableStyleDescription: tableDataStyle))
+                {
+                    @:Test
+                }
+            }
+        }
+    </body>
+</html>
