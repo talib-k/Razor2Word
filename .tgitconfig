@@ -1,0 +1,8 @@
+[bugtraq]
+	url = https://github.com/talib-k/Razor2Word/issues/%BUGID%
+	message = "Issue #%BUGID%"
+	label = Issue ID:
+	append = false
+	number = true
+	warnifnoissue = true
+	logregex = ""
